@@ -34,7 +34,10 @@ function createGrid() {
 
 function askGridSize() {
     let tempSize = prompt("Enter the grid size :");
-    if (typeof tempSize !== "number") {
+
+    if (!tempSize) return;
+
+    if (isNaN(tempSize)) {
         alert("You have to enter a number");
         askGridSize();
     } else if (tempSize < 0 || tempSize > 100) {

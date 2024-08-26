@@ -7,8 +7,8 @@ body {
 }
 
 .grid {
-  width: 35vw;
-  height: 35vw;
+  width: 70vh;
+  height: 70vh;
   display: flex;
   flex-direction: column;
 }
