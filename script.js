@@ -33,7 +33,16 @@ function createGrid() {
 }
 
 function askGridSize() {
-    gridSize = prompt("Enter the grid size :");
+    let tempSize = prompt("Enter the grid size :");
+    if (typeof tempSize !== "number") {
+        alert("You have to enter a number");
+        askGridSize();
+    } else if (tempSize < 0 || tempSize > 100) {
+        alert("You have to enter a number between 0 and 100");
+        askGridSize();
+    } else {
+        gridSize = Number(tempSize);
+    }
     createGrid();
 }
 
