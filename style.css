@@ -1,0 +1,17 @@
+.grid {
+  width: 40vw;
+  height: 40vw;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.line-container {
+  display: flex;
+  flex: 1 1 auto;
+}
+
+.square {
+  border: solid 1px black;
+  flex: 1 1 auto;
+}
