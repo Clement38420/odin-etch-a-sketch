@@ -1,13 +1,28 @@
 const grid = document.querySelector(".grid");
-const setSizeButton = document.querySelector("button.set-size")
+const setSizeButton = document.querySelector(".set-size-btn");
+const clearGridButton = document.querySelector(".clear-btn");
+const rainbowModeCheckbox = document.querySelector(".rainbow-mode-chb");
 
 let gridSize = 16;
+let rainbowMode = rainbowModeCheckbox.checked;
 
-function colorSquare(e) {
-    e.target.style.background = "black";
+function randomColorCSSProperty() {
+    let r = Math.floor(Math.random() * 1000 % 255);
+    let g = Math.floor(Math.random() * 1000 % 255);
+    let b = Math.floor(Math.random() * 1000 % 255);
+
+    return 'rgb(' + [r, g, b].join(',') + ')';
 }
 
-function clearGrid() {
+function colorSquare(e) {
+    if (rainbowMode) {
+        e.target.style.backgroundColor = randomColorCSSProperty();
+    } else {
+        e.target.style.backgroundColor = "black";
+    }
+}
+
+function deleteGrid() {
     let lines = grid.querySelectorAll(".line-container");
     for (let line of lines) {
         grid.removeChild(line);
@@ -15,7 +30,7 @@ function clearGrid() {
 }
 
 function createGrid() {
-    clearGrid();
+    deleteGrid();
 
     for (let i = 0; i < gridSize; i++) {
         let lineContainer = document.createElement("div");
@@ -37,7 +52,7 @@ function askGridSize() {
 
     if (!tempSize) return;
 
-    if (isNaN(tempSize)) {
+    if (isNaN(Number(tempSize))) {
         alert("You have to enter a number");
         askGridSize();
     } else if (tempSize < 0 || tempSize > 100) {
@@ -49,9 +64,16 @@ function askGridSize() {
     createGrid();
 }
 
+function toggleRainbowMode() {
+    rainbowMode = !rainbowMode;
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     createGrid();
 });
-
 setSizeButton.addEventListener("click", askGridSize);
+clearGridButton.addEventListener("click", createGrid); // Create grid function delete the actual (coloured) grid AND
+// recreate a new one
+rainbowModeCheckbox.addEventListener("change", toggleRainbowMode);
+
 
