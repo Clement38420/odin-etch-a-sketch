@@ -15,10 +15,17 @@ function randomColorCSSProperty() {
 }
 
 function colorSquare(e) {
-    if (rainbowMode) {
-        e.target.style.backgroundColor = randomColorCSSProperty();
-    } else {
-        e.target.style.backgroundColor = "black";
+    let squareOpacity = e.target.style.opacity;
+
+    if (!e.target.style.backgroundColor) {
+        e.target.style.opacity = "0.1";
+        if (rainbowMode) {
+            e.target.style.backgroundColor = randomColorCSSProperty();
+        } else {
+            e.target.style.backgroundColor = "black";
+        }
+    } else if (squareOpacity < 1) {
+        e.target.style.opacity = (Number(squareOpacity) + 0.1).toString();
     }
 }
 
