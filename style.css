@@ -1,6 +1,14 @@
+body {
+  margin: 0;
+  padding-top: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .grid {
-  width: 40vw;
-  height: 40vw;
+  width: 35vw;
+  height: 35vw;
   display: flex;
   flex-direction: column;
 }
@@ -13,4 +21,9 @@
 .square {
   border: solid 1px black;
   flex: 1 1 auto;
+}
+
+.set-size {
+  margin-bottom: 25px;
+  font-size: 24px;
 }
